@@ -128,7 +128,7 @@ export default function HomePage() {
             <div className="relative flex-1">
               <input
                 className="premium-input !pl-11"
-                placeholder={t("search_category") || "Search categories..."}
+                placeholder={"Search categories..."}
                 value={catSearch}
                 onChange={(e) => setCatSearch(e.target.value)}
               />
