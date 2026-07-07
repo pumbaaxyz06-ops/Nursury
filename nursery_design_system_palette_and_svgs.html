@@ -1,0 +1,359 @@
+
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Gujarati:wght@400;500;600&display=swap" rel="stylesheet">
+<h2 class="sr-only">Nursery app design system — three color palettes and eight custom plant SVG illustrations</h2>
+<style>
+.ds{padding:1rem 0}
+.sec{margin-bottom:2rem}
+.sh{font-size:11px;font-weight:500;color:var(--text-muted);letter-spacing:.08em;text-transform:uppercase;margin:0 0 12px;display:flex;align-items:center;gap:8px}
+.sh::after{content:'';flex:1;height:0.5px;background:var(--border)}
+.pg{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.pc{background:var(--surface-1);border-radius:12px;border:0.5px solid var(--border);padding:14px;cursor:pointer;position:relative;transition:none}
+.pc.on{border:1.5px solid #2DAE63}
+.pn{font-size:14px;font-weight:500;color:var(--text-primary);margin-bottom:2px}
+.pd{font-size:11px;color:var(--text-secondary);margin-bottom:10px}
+.sl{font-size:9px;color:var(--text-muted);margin-bottom:3px;font-weight:500;text-transform:uppercase;letter-spacing:.05em}
+.sr{display:flex;gap:4px;margin-bottom:6px}
+.sw{width:22px;height:22px;border-radius:5px;flex-shrink:0}
+.rb{background:#E0F8EC;color:#0C4A2C;font-size:9px;font-weight:500;padding:2px 8px;border-radius:9999px;display:inline-block;margin-bottom:6px}
+.tg{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+.tgh{font-size:10px;font-weight:500;color:var(--text-muted);text-transform:uppercase;letter-spacing:.06em;margin-bottom:8px;margin-top:12px}
+.tgh:first-child{margin-top:0}
+.tr{display:flex;align-items:center;gap:8px;margin-bottom:5px}
+.ts{width:26px;height:26px;border-radius:6px;flex-shrink:0}
+.tn{font-size:11px;font-weight:500;color:var(--text-primary);line-height:1.2}
+.th{font-size:10px;color:var(--text-muted);font-family:var(--font-mono)}
+.tyrows{display:flex;flex-direction:column;gap:4px}
+.tyrow{display:flex;align-items:baseline;gap:8px}
+.tylbl{font-size:10px;color:var(--text-muted);width:60px;flex-shrink:0}
+.rr{display:flex;gap:10px;align-items:flex-end;margin-top:8px}
+.ri{display:flex;flex-direction:column;align-items:center;gap:3px}
+.rlbl{font-size:9px;color:var(--text-muted);text-align:center}
+.cr{display:flex;gap:7px;flex-wrap:wrap;align-items:center;margin-top:8px}
+.plg{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px}
+.plc{background:var(--surface-1);border-radius:12px;border:0.5px solid var(--border);padding:12px 8px 10px;display:flex;flex-direction:column;align-items:center;gap:5px}
+.gnu{font-size:13px;font-weight:500;color:var(--text-primary);text-align:center;font-family:'Noto Sans Gujarati',sans-serif}
+.gen{font-size:10px;color:var(--text-muted);text-align:center}
+.dots{display:flex;gap:3px;justify-content:center}
+.dot{width:10px;height:10px;border-radius:50%}
+</style>
+
+<div class="ds">
+
+<div class="sec">
+<div class="sh">Color palettes — choose one</div>
+<div class="pg">
+<div class="pc on" onclick="document.querySelectorAll('.pc').forEach(p=>p.classList.remove('on'));this.classList.add('on')">
+<span class="rb">★ Recommended</span>
+<div class="pn">Jade &amp; Gold</div>
+<div class="pd">Premium · fresh · modern</div>
+<div class="sl">Primary</div>
+<div class="sr">
+<div class="sw" style="background:#0C4A2C"></div>
+<div class="sw" style="background:#1A7A45"></div>
+<div class="sw" style="background:#2DAE63"></div>
+<div class="sw" style="background:#74D68A"></div>
+<div class="sw" style="background:#E0F8EC;border:0.5px solid #74D68A"></div>
+</div>
+<div class="sl">Accent</div>
+<div class="sr">
+<div class="sw" style="background:#B8720E"></div>
+<div class="sw" style="background:#E8A020"></div>
+<div class="sw" style="background:#FDE8B5;border:0.5px solid #E8A020"></div>
+</div>
+<div class="sl" style="margin-top:6px">Neutral</div>
+<div class="sr">
+<div class="sw" style="background:#1A2A20"></div>
+<div class="sw" style="background:#4A6355"></div>
+<div class="sw" style="background:#F4FAF6;border:0.5px solid #C0D4C8"></div>
+</div>
+</div>
+<div class="pc" onclick="document.querySelectorAll('.pc').forEach(p=>p.classList.remove('on'));this.classList.add('on')">
+<div class="pn">Saffron &amp; Forest</div>
+<div class="pd">Warm · Gujarat-rooted</div>
+<div class="sl">Primary</div>
+<div class="sr">
+<div class="sw" style="background:#183D2B"></div>
+<div class="sw" style="background:#2A6048"></div>
+<div class="sw" style="background:#3D8C65"></div>
+<div class="sw" style="background:#8FD4AC"></div>
+<div class="sw" style="background:#DFF5EA;border:0.5px solid #8FD4AC"></div>
+</div>
+<div class="sl">Accent</div>
+<div class="sr">
+<div class="sw" style="background:#C04010"></div>
+<div class="sw" style="background:#E86030"></div>
+<div class="sw" style="background:#FCE0D4;border:0.5px solid #E86030"></div>
+</div>
+<div class="sl" style="margin-top:6px">Neutral</div>
+<div class="sr">
+<div class="sw" style="background:#1E2C24"></div>
+<div class="sw" style="background:#506058"></div>
+<div class="sw" style="background:#F2FAF5;border:0.5px solid #C4D8CC"></div>
+</div>
+</div>
+<div class="pc" onclick="document.querySelectorAll('.pc').forEach(p=>p.classList.remove('on'));this.classList.add('on')">
+<div class="pn">Teal &amp; Honey</div>
+<div class="pd">Bold · vibrant · eye-catching</div>
+<div class="sl">Primary</div>
+<div class="sr">
+<div class="sw" style="background:#064E40"></div>
+<div class="sw" style="background:#0D7A62"></div>
+<div class="sw" style="background:#1AADA8"></div>
+<div class="sw" style="background:#72D5D0"></div>
+<div class="sw" style="background:#D8F5F4;border:0.5px solid #72D5D0"></div>
+</div>
+<div class="sl">Accent</div>
+<div class="sr">
+<div class="sw" style="background:#CC7A00"></div>
+<div class="sw" style="background:#F0A030"></div>
+<div class="sw" style="background:#FDEDC8;border:0.5px solid #F0A030"></div>
+</div>
+<div class="sl" style="margin-top:6px">Neutral</div>
+<div class="sr">
+<div class="sw" style="background:#1A2926"></div>
+<div class="sw" style="background:#4A6262"></div>
+<div class="sw" style="background:#F2FAFA;border:0.5px solid #C0D8D6"></div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="sec">
+<div class="sh">Design tokens — Jade &amp; Gold (recommended)</div>
+<div class="tg">
+<div>
+<div class="tgh" style="margin-top:0">Primary · Jade</div>
+<div class="tr"><div class="ts" style="background:#0C4A2C"></div><div><div class="tn">primary-900</div><div class="th">#0C4A2C · header, nav bg</div></div></div>
+<div class="tr"><div class="ts" style="background:#1A7A45"></div><div><div class="tn">primary-700</div><div class="th">#1A7A45 · active, hover</div></div></div>
+<div class="tr"><div class="ts" style="background:#2DAE63"></div><div><div class="tn">primary-500</div><div class="th">#2DAE63 · icons, links</div></div></div>
+<div class="tr"><div class="ts" style="background:#74D68A"></div><div><div class="tn">primary-200</div><div class="th">#74D68A · borders</div></div></div>
+<div class="tr"><div class="ts" style="background:#E0F8EC;border:0.5px solid #74D68A"></div><div><div class="tn">primary-50</div><div class="th">#E0F8EC · chip, card tint</div></div></div>
+<div class="tgh">Accent · Gold</div>
+<div class="tr"><div class="ts" style="background:#B8720E"></div><div><div class="tn">accent-600</div><div class="th">#B8720E · CTA hover, price</div></div></div>
+<div class="tr"><div class="ts" style="background:#E8A020"></div><div><div class="tn">accent-400</div><div class="th">#E8A020 · button, badge</div></div></div>
+<div class="tr"><div class="ts" style="background:#FDE8B5;border:0.5px solid #E8A020"></div><div><div class="tn">accent-100</div><div class="th">#FDE8B5 · info background</div></div></div>
+</div>
+<div>
+<div class="tgh" style="margin-top:0">Neutral</div>
+<div class="tr"><div class="ts" style="background:#1A2A20"></div><div><div class="tn">neutral-900</div><div class="th">#1A2A20 · primary text</div></div></div>
+<div class="tr"><div class="ts" style="background:#4A6355"></div><div><div class="tn">neutral-600</div><div class="th">#4A6355 · secondary text</div></div></div>
+<div class="tr"><div class="ts" style="background:#C0D4C8;border:0.5px solid #A0BCA8"></div><div><div class="tn">neutral-200</div><div class="th">#C0D4C8 · dividers</div></div></div>
+<div class="tr"><div class="ts" style="background:#F4FAF6;border:0.5px solid #C0D4C8"></div><div><div class="tn">neutral-50</div><div class="th">#F4FAF6 · page bg</div></div></div>
+<div class="tgh">Status</div>
+<div class="tr"><div class="ts" style="background:#E0F8EC;border:0.5px solid #74D68A"></div><div><div class="tn">success</div><div class="th">#E0F8EC bg · #0C4A2C text</div></div></div>
+<div class="tr"><div class="ts" style="background:#FDE8B5;border:0.5px solid #E8A020"></div><div><div class="tn">warning</div><div class="th">#FDE8B5 bg · #7A4A00 text</div></div></div>
+<div class="tr"><div class="ts" style="background:#FEEDE8;border:0.5px solid #F09595"></div><div><div class="tn">danger</div><div class="th">#FEEDE8 bg · #7A2010 text</div></div></div>
+<div class="tgh">Spacing</div>
+<div style="font-size:11px;color:var(--text-secondary);line-height:1.9">
+xs · 4px &nbsp; sm · 8px<br>md · 12px · lg · 16px<br>xl · 24px · 2xl · 32px
+</div>
+</div>
+<div>
+<div class="tgh" style="margin-top:0">Typography</div>
+<div class="tyrows">
+<div class="tyrow"><span class="tylbl">H1 · 22px</span><span style="font-size:22px;font-weight:500;color:var(--text-primary)">Aa</span></div>
+<div class="tyrow"><span class="tylbl">H2 · 18px</span><span style="font-size:18px;font-weight:500;color:var(--text-primary)">Aa</span></div>
+<div class="tyrow"><span class="tylbl">Body · 14px</span><span style="font-size:14px;color:var(--text-primary)">Aa</span></div>
+<div class="tyrow"><span class="tylbl">Small · 12px</span><span style="font-size:12px;color:var(--text-secondary)">Aa</span></div>
+<div class="tyrow"><span class="tylbl">Caption · 10px</span><span style="font-size:10px;font-weight:500;color:var(--text-muted)">Aa</span></div>
+<div class="tyrow"><span class="tylbl">Gujarati</span><span style="font-size:14px;font-weight:500;color:var(--text-primary);font-family:'Noto Sans Gujarati',sans-serif">ટામેટા</span></div>
+</div>
+<div class="tgh">Border radius</div>
+<div class="rr">
+<div class="ri"><div style="width:22px;height:22px;border-radius:4px;background:#0C4A2C"></div><div class="rlbl">sm·4</div></div>
+<div class="ri"><div style="width:22px;height:22px;border-radius:8px;background:#1A7A45"></div><div class="rlbl">md·8</div></div>
+<div class="ri"><div style="width:22px;height:22px;border-radius:12px;background:#2DAE63"></div><div class="rlbl">lg·12</div></div>
+<div class="ri"><div style="width:36px;height:22px;border-radius:9999px;background:#74D68A"></div><div class="rlbl">pill</div></div>
+</div>
+<div class="tgh">Components</div>
+<div class="cr">
+<button style="padding:7px 14px;border-radius:8px;background:#0C4A2C;color:#E0F8EC;font-size:12px;font-weight:500;border:none;cursor:pointer;font-family:'Noto Sans Gujarati',sans-serif">ઉમેરો</button>
+<button style="padding:7px 14px;border-radius:8px;background:#E8A020;color:#fff;font-size:12px;font-weight:500;border:none;cursor:pointer;font-family:'Noto Sans Gujarati',sans-serif">બિલ</button>
+<button style="padding:7px 14px;border-radius:8px;background:#E0F8EC;color:#0C4A2C;font-size:12px;font-weight:500;border:0.5px solid #74D68A;cursor:pointer;font-family:'Noto Sans Gujarati',sans-serif">ફિલ્ટર</button>
+</div>
+<div class="cr" style="margin-top:5px">
+<span style="background:#E0F8EC;color:#0C4A2C;font-size:10px;font-weight:500;padding:3px 9px;border-radius:9999px;font-family:'Noto Sans Gujarati',sans-serif">સ્વસ્થ</span>
+<span style="background:#FDE8B5;color:#7A4A00;font-size:10px;font-weight:500;padding:3px 9px;border-radius:9999px;font-family:'Noto Sans Gujarati',sans-serif">સામાન્ય</span>
+<span style="background:#FEEDE8;color:#7A2010;font-size:10px;font-weight:500;padding:3px 9px;border-radius:9999px;font-family:'Noto Sans Gujarati',sans-serif">નબળો</span>
+</div>
+</div>
+</div>
+</div>
+
+<div class="sec">
+<div class="sh">Plant illustration library — custom SVGs</div>
+<div class="plg">
+
+<div class="plc">
+<svg width="80" height="80" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+<circle cx="40" cy="48" r="25" fill="#E53935"/>
+<ellipse cx="33" cy="38" rx="10" ry="7" fill="#FF7171" opacity=".4"/>
+<ellipse cx="47" cy="62" rx="15" ry="8" fill="#B71C1C" opacity=".38"/>
+<path d="M40 25 Q34 12 28 10 Q36 18 40 25Z" fill="#43A047"/>
+<path d="M40 25 Q46 12 52 10 Q44 18 40 25Z" fill="#2E7D32"/>
+<path d="M40 25 Q25 19 21 24 Q31 25 40 25Z" fill="#388E3C"/>
+<path d="M40 25 Q55 19 59 24 Q49 25 40 25Z" fill="#43A047"/>
+<circle cx="40" cy="25" r="4" fill="#1B5E20"/>
+<path d="M40 21 Q44 13 48 9" stroke="#2E7D32" stroke-width="2.5" stroke-linecap="round"/>
+<circle cx="40" cy="71" r="2.5" fill="#B71C1C" opacity=".5"/>
+</svg>
+<div class="gnu">ટામેટા</div>
+<div class="gen">Tomato</div>
+<div class="dots"><div class="dot" style="background:#E53935"></div><div class="dot" style="background:#B71C1C"></div><div class="dot" style="background:#388E3C"></div></div>
+</div>
+
+<div class="plc">
+<svg width="80" height="80" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M43 16 C52 23 56 40 53 55 C51 64 47 72 40 73 C33 72 29 64 27 55 C24 40 29 23 38 16Z" fill="#E53935"/>
+<path d="M43 18 C51 25 53 38 51 52" stroke="#FF8A80" stroke-width="5" stroke-linecap="round" opacity=".32"/>
+<path d="M40 73 C34 67 27 59 27 52 C26 40 30 26 37 19" stroke="#B71C1C" stroke-width="5" stroke-linecap="round" opacity=".38"/>
+<path d="M40 73 Q37 77 36 79 Q40 76 44 78 Q42 75 40 73Z" fill="#C62828"/>
+<path d="M41 16 Q39 7 38 3 Q41 9 44 8 Q42 12 41 16Z" fill="#43A047"/>
+<path d="M41 16 Q50 13 53 10 Q46 14 41 16Z" fill="#2E7D32"/>
+<path d="M40 16 Q31 13 28 10 Q35 14 40 16Z" fill="#388E3C"/>
+<path d="M41 12 Q45 6 48 3" stroke="#33691E" stroke-width="2" stroke-linecap="round"/>
+</svg>
+<div class="gnu">મરચું</div>
+<div class="gen">Red Chilli</div>
+<div class="dots"><div class="dot" style="background:#E53935"></div><div class="dot" style="background:#C62828"></div><div class="dot" style="background:#388E3C"></div></div>
+</div>
+
+<div class="plc">
+<svg width="80" height="80" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+<ellipse cx="17" cy="53" rx="13" ry="22" fill="#558B2F" transform="rotate(-16 17 53)"/>
+<ellipse cx="63" cy="53" rx="13" ry="22" fill="#558B2F" transform="rotate(16 63 53)"/>
+<ellipse cx="27" cy="47" rx="17" ry="26" fill="#7CB342" transform="rotate(-9 27 47)"/>
+<ellipse cx="53" cy="47" rx="17" ry="26" fill="#7CB342" transform="rotate(9 53 47)"/>
+<circle cx="40" cy="46" r="21" fill="#9CCC65"/>
+<circle cx="40" cy="44" r="15" fill="#C5E1A5"/>
+<circle cx="40" cy="42" r="9" fill="#DCEDC8"/>
+<path d="M40 30 Q39 38 40 56" stroke="#8BC34A" stroke-width="1.5" stroke-linecap="round" opacity=".6"/>
+<path d="M31 36 Q37 42 40 56" stroke="#8BC34A" stroke-width="1" stroke-linecap="round" opacity=".5"/>
+<path d="M49 36 Q43 42 40 56" stroke="#8BC34A" stroke-width="1" stroke-linecap="round" opacity=".5"/>
+</svg>
+<div class="gnu">કોબીજ</div>
+<div class="gen">Cabbage</div>
+<div class="dots"><div class="dot" style="background:#558B2F"></div><div class="dot" style="background:#9CCC65"></div><div class="dot" style="background:#DCEDC8;border:0.5px solid #bbb"></div></div>
+</div>
+
+<div class="plc">
+<svg width="80" height="80" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+<ellipse cx="40" cy="15" rx="6" ry="12" fill="#FB8C00"/>
+<ellipse cx="40" cy="15" rx="6" ry="12" fill="#FB8C00" transform="rotate(45 40 40)"/>
+<ellipse cx="40" cy="15" rx="6" ry="12" fill="#FB8C00" transform="rotate(90 40 40)"/>
+<ellipse cx="40" cy="15" rx="6" ry="12" fill="#FB8C00" transform="rotate(135 40 40)"/>
+<ellipse cx="40" cy="15" rx="6" ry="12" fill="#FB8C00" transform="rotate(180 40 40)"/>
+<ellipse cx="40" cy="15" rx="6" ry="12" fill="#FB8C00" transform="rotate(225 40 40)"/>
+<ellipse cx="40" cy="15" rx="6" ry="12" fill="#FB8C00" transform="rotate(270 40 40)"/>
+<ellipse cx="40" cy="15" rx="6" ry="12" fill="#FB8C00" transform="rotate(315 40 40)"/>
+<ellipse cx="40" cy="20" rx="4.5" ry="9" fill="#FFA726" transform="rotate(22.5 40 40)"/>
+<ellipse cx="40" cy="20" rx="4.5" ry="9" fill="#FFA726" transform="rotate(67.5 40 40)"/>
+<ellipse cx="40" cy="20" rx="4.5" ry="9" fill="#FFA726" transform="rotate(112.5 40 40)"/>
+<ellipse cx="40" cy="20" rx="4.5" ry="9" fill="#FFA726" transform="rotate(157.5 40 40)"/>
+<ellipse cx="40" cy="20" rx="4.5" ry="9" fill="#FFA726" transform="rotate(202.5 40 40)"/>
+<ellipse cx="40" cy="20" rx="4.5" ry="9" fill="#FFA726" transform="rotate(247.5 40 40)"/>
+<ellipse cx="40" cy="20" rx="4.5" ry="9" fill="#FFA726" transform="rotate(292.5 40 40)"/>
+<ellipse cx="40" cy="20" rx="4.5" ry="9" fill="#FFA726" transform="rotate(337.5 40 40)"/>
+<circle cx="40" cy="40" r="10" fill="#F9A825"/>
+<circle cx="40" cy="40" r="7" fill="#F57F17"/>
+<circle cx="40" cy="37" r="1.5" fill="#E65100" opacity=".7"/>
+<circle cx="37" cy="42" r="1.5" fill="#E65100" opacity=".7"/>
+<circle cx="43" cy="42" r="1.5" fill="#E65100" opacity=".7"/>
+<path d="M40 68 L40 56" stroke="#2E7D32" stroke-width="3" stroke-linecap="round"/>
+<path d="M40 63 Q29 58 25 52 Q33 57 40 63Z" fill="#388E3C"/>
+<path d="M40 66 Q51 61 55 55 Q47 60 40 66Z" fill="#2E7D32"/>
+</svg>
+<div class="gnu">ફૂલ (ગલગોટા)</div>
+<div class="gen">Marigold</div>
+<div class="dots"><div class="dot" style="background:#FB8C00"></div><div class="dot" style="background:#F57F17"></div><div class="dot" style="background:#388E3C"></div></div>
+</div>
+
+<div class="plc">
+<svg width="80" height="80" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M13 57 C9 46 18 38 29 42 L33 51Z" fill="#558B2F"/>
+<path d="M67 57 C71 46 62 38 51 42 L47 51Z" fill="#558B2F"/>
+<path d="M13 57 C11 60 14 65 22 67 L34 60Z" fill="#7CB342"/>
+<path d="M67 57 C69 60 66 65 58 67 L46 60Z" fill="#7CB342"/>
+<path d="M34 64 C30 71 37 74 40 74 C43 74 50 71 46 64Z" fill="#7CB342"/>
+<circle cx="26" cy="45" r="10" fill="#F4F4EC"/>
+<circle cx="40" cy="39" r="12" fill="#EEEEDE"/>
+<circle cx="54" cy="45" r="10" fill="#F4F4EC"/>
+<circle cx="33" cy="51" r="10" fill="#E8E8D6"/>
+<circle cx="47" cy="51" r="10" fill="#E8E8D6"/>
+<circle cx="40" cy="49" r="10" fill="#EEEEDE"/>
+<circle cx="28" cy="43" r="6" fill="#F8F8F0"/>
+<circle cx="40" cy="38" r="7" fill="#FAFAF2"/>
+<circle cx="52" cy="43" r="6" fill="#F8F8F0"/>
+<circle cx="35" cy="51" r="5" fill="#F0F0E8"/>
+<circle cx="45" cy="51" r="5" fill="#F0F0E8"/>
+</svg>
+<div class="gnu">ફ્લાવર</div>
+<div class="gen">Cauliflower</div>
+<div class="dots"><div class="dot" style="background:#EEEEDE;border:0.5px solid #ccc"></div><div class="dot" style="background:#7CB342"></div><div class="dot" style="background:#558B2F"></div></div>
+</div>
+
+<div class="plc">
+<svg width="80" height="80" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M40 72 L40 16" stroke="#2E7D32" stroke-width="3" stroke-linecap="round"/>
+<path d="M40 61 Q28 55 23 47" stroke="#388E3C" stroke-width="2" stroke-linecap="round"/>
+<path d="M40 61 Q52 55 57 47" stroke="#388E3C" stroke-width="2" stroke-linecap="round"/>
+<path d="M40 45 Q28 39 23 31" stroke="#388E3C" stroke-width="2" stroke-linecap="round"/>
+<path d="M40 45 Q52 39 57 31" stroke="#388E3C" stroke-width="2" stroke-linecap="round"/>
+<ellipse cx="23" cy="47" rx="11" ry="6" fill="#4CAF50" transform="rotate(-22 23 47)"/>
+<ellipse cx="57" cy="47" rx="11" ry="6" fill="#43A047" transform="rotate(22 57 47)"/>
+<ellipse cx="23" cy="31" rx="11" ry="6" fill="#4CAF50" transform="rotate(-22 23 31)"/>
+<ellipse cx="57" cy="31" rx="11" ry="6" fill="#43A047" transform="rotate(22 57 31)"/>
+<path d="M40 16 Q34 9 30 11 Q36 15 40 16Z" fill="#388E3C"/>
+<path d="M40 16 Q46 9 50 11 Q44 15 40 16Z" fill="#2E7D32"/>
+<path d="M15 47 Q23 47 31 47" stroke="#2E7D32" stroke-width="1" opacity=".45"/>
+<path d="M65 47 Q57 47 49 47" stroke="#2E7D32" stroke-width="1" opacity=".45"/>
+<path d="M15 31 Q23 31 31 31" stroke="#2E7D32" stroke-width="1" opacity=".45"/>
+<path d="M65 31 Q57 31 49 31" stroke="#2E7D32" stroke-width="1" opacity=".45"/>
+</svg>
+<div class="gnu">ફૂદીનો</div>
+<div class="gen">Mint</div>
+<div class="dots"><div class="dot" style="background:#2E7D32"></div><div class="dot" style="background:#4CAF50"></div><div class="dot" style="background:#A5D6A7"></div></div>
+</div>
+
+<div class="plc">
+<svg width="80" height="80" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M40 20 C54 20 63 33 63 50 C63 63 53 73 40 73 C27 73 17 63 17 50 C17 33 26 20 40 20Z" fill="#7B1FA2"/>
+<path d="M40 22 C52 22 60 33 59 49" stroke="#AB47BC" stroke-width="5" stroke-linecap="round" opacity=".3"/>
+<path d="M40 73 C28 67 19 58 19 49 C18 37 25 24 37 21" stroke="#4A148C" stroke-width="5" stroke-linecap="round" opacity=".38"/>
+<ellipse cx="31" cy="36" rx="8" ry="5" fill="#CE93D8" opacity=".42"/>
+<path d="M40 20 Q34 9 29 8 Q35 14 40 20Z" fill="#43A047"/>
+<path d="M40 20 Q46 9 51 8 Q45 14 40 20Z" fill="#2E7D32"/>
+<path d="M40 20 Q26 15 22 19 Q31 20 40 20Z" fill="#388E3C"/>
+<path d="M40 20 Q54 15 58 19 Q49 20 40 20Z" fill="#43A047"/>
+<circle cx="40" cy="20" r="4" fill="#1B5E20"/>
+<path d="M40 16 Q43 8 47 5" stroke="#33691E" stroke-width="2.5" stroke-linecap="round"/>
+</svg>
+<div class="gnu">રીંગણ</div>
+<div class="gen">Eggplant</div>
+<div class="dots"><div class="dot" style="background:#7B1FA2"></div><div class="dot" style="background:#4A148C"></div><div class="dot" style="background:#388E3C"></div></div>
+</div>
+
+<div class="plc">
+<svg width="80" height="80" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M40 25 C58 25 68 38 68 53 C68 66 56 73 40 73 C24 73 12 66 12 53 C12 38 22 25 40 25Z" fill="#D4720A"/>
+<path d="M40 27 C57 27 66 39 65 52" stroke="#E8940E" stroke-width="5" stroke-linecap="round" opacity=".4"/>
+<path d="M40 73 C26 68 14 59 14 52 C13 40 21 28 36 26" stroke="#A85200" stroke-width="5" stroke-linecap="round" opacity=".38"/>
+<path d="M23 28 C14 35 11 45 14 55" stroke="#A85200" stroke-width="1.5" fill="none" stroke-linecap="round" opacity=".45"/>
+<path d="M31 25 C21 31 16 42 18 53" stroke="#A85200" stroke-width="1.5" fill="none" stroke-linecap="round" opacity=".38"/>
+<ellipse cx="40" cy="25" r="7" rx="8" fill="#C46200"/>
+<ellipse cx="40" cy="25" rx="8" ry="5" fill="#C46200"/>
+<path d="M34 73 L32 78" stroke="#7C3E00" stroke-width="1.5" stroke-linecap="round"/>
+<path d="M40 73 L40 78" stroke="#7C3E00" stroke-width="1.5" stroke-linecap="round"/>
+<path d="M46 73 L48 78" stroke="#7C3E00" stroke-width="1.5" stroke-linecap="round"/>
+<path d="M34 25 Q32 14 30 8" stroke="#43A047" stroke-width="2" stroke-linecap="round"/>
+<path d="M40 23 Q40 12 40 5" stroke="#388E3C" stroke-width="2.5" stroke-linecap="round"/>
+<path d="M46 25 Q48 14 50 8" stroke="#43A047" stroke-width="2" stroke-linecap="round"/>
+</svg>
+<div class="gnu">ડુંગળી</div>
+<div class="gen">Onion</div>
+<div class="dots"><div class="dot" style="background:#D4720A"></div><div class="dot" style="background:#C46200"></div><div class="dot" style="background:#43A047"></div></div>
+</div>
+
+</div>
+</div>
+</div>

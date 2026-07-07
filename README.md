@@ -1,33 +1,64 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 🌱 Nursery Manager
 
-## Getting Started
+Mobile-first nursery management platform for farmers (Gujarati-first).
 
-First, run the development server:
+**All screens are designed exclusively for mobile** — 420px container, 56px+ touch targets, big text, Gujarati + English.
 
+## Quick Start
+
+1. Copy environment variables:
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+cp .env.example .env.local
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+2. Add your MongoDB URI in `.env.local`
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+3. Seed demo data (highly recommended for testing):
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```bash
+npm run seed
+```
 
-## Learn More
+This creates:
+- Farmer login: Phone `9876543210` / Password `123456`
+- 6 plant categories + 10 stock items
 
-To learn more about Next.js, take a look at the following resources:
+4. Run the dev server:
+```bash
+npm run dev
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+4. Seed demo user (from Login page):
+   - Tap **"Create Demo Account (9876543210 / 123456)"**
+   - Phone: `9876543210`
+   - Password: `123456`
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Login Credentials (Demo Farmer)
+
+**Use these to test as a farmer:**
+
+- **Phone:** `9876543210`
+- **Password:** `123456`
+
+Run `npm run seed` first to populate categories and stock.
+
+## Mobile Experience
+- Fixed max-width container = phone size
+- Large tap areas
+- Bottom navigation
+- Gujarati first language
+- Works great on Android phones
+
+## Key Screens (All mobile)
+- Login
+- Home (Category grid)
+- Stock + Add/Edit
+- New Sale + PDF Bill
+- Bookings + Dispatch flow
+
+See full spec in `NURSERY_MANAGEMENT_PLAN.md`.
+
+Built exactly following the plan.
 
 ## Deploy on Vercel
 
