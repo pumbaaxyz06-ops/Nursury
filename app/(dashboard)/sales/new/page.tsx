@@ -13,13 +13,17 @@ export default function NewSalePage() {
   const { t } = useLang();
 
   const handleComplete = (sale: any) => {
-    const nursery = (session?.user as any)?.nursery_name || "Nursery";
-    generateBill(sale, nursery);
+    const user = session?.user as any;
+    generateBill(sale, {
+      nurseryName: user?.nursery_name || "Nursery",
+      ownerName: user?.name || "",
+      phone: user?.phone || "",
+    });
     router.push("/sales");
   };
 
   return (
-    <div>
+    <div className="pb-8">
       <PageHeader title={t("new_sale")} showBack />
       <SaleForm onComplete={handleComplete} />
     </div>

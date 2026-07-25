@@ -17,7 +17,8 @@ export const authOptions: NextAuthOptions = {
 
         await connectDB();
 
-        const user = await User.findOne({ phone: credentials.phone.trim() });
+        const phone = credentials.phone.trim().replace(/\s+/g, "");
+        const user = await User.findOne({ phone });
         if (!user) return null;
 
         const isValid = await bcrypt.compare(credentials.password, user.password);

@@ -17,6 +17,9 @@ export interface ISale extends Document {
   items: ISaleItem[];
   subtotal: number;
   discount: number;
+  with_gst: boolean;
+  gst_percent: number;
+  gst_amount: number;
   final_amount: number;
   payment_method: "cash" | "upi" | "credit";
   notes: string;
@@ -40,6 +43,9 @@ const SaleSchema = new Schema<ISale>({
   items: { type: [SaleItemSchema], required: true },
   subtotal: { type: Number, required: true },
   discount: { type: Number, default: 0 },
+  with_gst: { type: Boolean, default: false },
+  gst_percent: { type: Number, default: 0 },
+  gst_amount: { type: Number, default: 0 },
   final_amount: { type: Number, required: true },
   payment_method: { type: String, enum: ["cash", "upi", "credit"], default: "cash" },
   notes: { type: String, default: "" },
@@ -53,7 +59,6 @@ SaleSchema.pre("save", async function () {
     const count = await mongoose.model("Sale").countDocuments();
     this.bill_number = `NUR-${dateStr}-${String(count + 1).padStart(4, "0")}`;
   }
-  // No next() call needed for async hooks
 });
 
 export default mongoose.models.Sale || mongoose.model<ISale>("Sale", SaleSchema);

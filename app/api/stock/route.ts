@@ -54,6 +54,8 @@ export async function POST(req: NextRequest) {
 
   const item = await StockItem.create({
     ...body,
+    image: body.image || "https://picsum.photos/id/106/300/200",
+    condition_image: body.condition_image || "",
     registered_by: userId,
   });
 

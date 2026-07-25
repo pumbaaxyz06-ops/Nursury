@@ -1,12 +1,12 @@
 "use client";
 
 import React, { createContext, useContext, useState, useEffect, ReactNode } from "react";
-import { Lang, t as translate } from "./i18n";
+import { Lang, TranslationKey, t as translate } from "./i18n";
 
 interface LanguageContextType {
   lang: Lang;
   setLang: (lang: Lang) => void;
-  t: (key: Parameters<typeof translate>[0]) => string;
+  t: (key: TranslationKey) => string;
 }
 
 const LanguageContext = createContext<LanguageContextType | undefined>(undefined);
@@ -26,7 +26,7 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
     localStorage.setItem("lang", newLang);
   };
 
-  const t = (key: Parameters<typeof translate>[0]) => translate(key, lang);
+  const t = (key: TranslationKey) => translate(key, lang);
 
   return (
     <LanguageContext.Provider value={{ lang, setLang, t }}>
@@ -38,11 +38,10 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
 export function useLang() {
   const context = useContext(LanguageContext);
   if (!context) {
-    // Fallback when not wrapped - use Gujarati
     return {
       lang: "gu" as Lang,
       setLang: () => {},
-      t: (key: Parameters<typeof translate>[0]) => translate(key, "gu"),
+      t: (key: TranslationKey) => translate(key, "gu"),
     };
   }
   return context;

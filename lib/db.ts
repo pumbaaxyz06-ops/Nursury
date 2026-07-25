@@ -1,4 +1,5 @@
 import mongoose from "mongoose";
+import { captureError } from "@/lib/sentry";
 
 const MONGODB_URI = process.env.MONGODB_URI || "";
 
@@ -28,6 +29,7 @@ export async function connectDB() {
     cached.conn = await cached.promise;
   } catch (e) {
     cached.promise = null;
+    captureError(e, { tags: { area: "database", action: "connect" } });
     throw e;
   }
 
