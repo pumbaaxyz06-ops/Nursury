@@ -1,6 +1,7 @@
 "use client";
 
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
+import { createPortal } from "react-dom";
 import { useLang } from "@/lib/LanguageContext";
 import { X, ImagePlus, Loader2 } from "lucide-react";
 import { toast } from "sonner";
@@ -20,9 +21,25 @@ export default function AddCategoryModal({ open, onClose, onAdded }: AddCategory
   const [emoji, setEmoji] = useState("🌱");
   const [image, setImage] = useState("");
   const [loading, setLoading] = useState(false);
+  const [mounted, setMounted] = useState(false);
   const fileRef = useRef<HTMLInputElement>(null);
 
-  if (!open) return null;
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  useEffect(() => {
+    if (open) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [open]);
+
+  if (!open || !mounted) return null;
 
   const reset = () => {
     setNameGu("");
@@ -70,15 +87,18 @@ export default function AddCategoryModal({ open, onClose, onAdded }: AddCategory
     }
   };
 
-  return (
-    <div className="fixed inset-0 z-[100] flex items-end sm:items-center justify-center bg-black/50 p-0 sm:p-4 backdrop-blur-[2px]">
+  const targetContainer = typeof document !== "undefined" ? (document.getElementById("app-frame") || document.body) : null;
+  if (!targetContainer) return null;
+
+  const content = (
+    <div className="fixed inset-0 z-[9999] flex items-center justify-center bg-black/60 p-3 sm:p-4 backdrop-blur-[2px] animate-fadeIn overflow-y-auto">
       <div
-        className="bg-white w-full sm:max-w-[420px] sm:rounded-2xl rounded-t-3xl shadow-premium-float max-h-[92vh] overflow-y-auto"
+        className="bg-white w-[calc(100%-1.5rem)] sm:max-w-[420px] rounded-3xl shadow-premium-float max-h-[90vh] overflow-y-auto my-auto relative z-10"
         role="dialog"
         aria-modal="true"
       >
         {/* Header bar */}
-        <div className="sticky top-0 z-10 flex items-center justify-between px-5 py-4 bg-[#306D29] text-white sm:rounded-t-2xl">
+        <div className="sticky top-0 z-10 flex items-center justify-between px-5 py-4 bg-[#306D29] text-white rounded-t-3xl">
           <h3 className="text-base font-bold tracking-tight">{t("add_new_category")}</h3>
           <button
             type="button"
@@ -86,7 +106,7 @@ export default function AddCategoryModal({ open, onClose, onAdded }: AddCategory
               reset();
               onClose();
             }}
-            className="p-2 rounded-xl hover:bg-white/15 transition-colors"
+            className="p-2 rounded-xl hover:bg-white/15 transition-colors cursor-pointer"
             aria-label={t("cancel")}
           >
             <X size={20} />
@@ -159,7 +179,7 @@ export default function AddCategoryModal({ open, onClose, onAdded }: AddCategory
                   key={e}
                   type="button"
                   onClick={() => setEmoji(e)}
-                  className={`w-11 h-11 text-xl rounded-xl border-2 transition-all ${
+                  className={`w-11 h-11 text-xl rounded-xl border-2 transition-all cursor-pointer ${
                     emoji === e
                       ? "border-primary bg-primary-light shadow-premium-sm scale-105"
                       : "border-neutral-200 bg-white hover:border-primary/40"
@@ -178,14 +198,14 @@ export default function AddCategoryModal({ open, onClose, onAdded }: AddCategory
                 reset();
                 onClose();
               }}
-              className="btn-premium-secondary flex-1"
+              className="btn-premium-secondary flex-1 cursor-pointer"
               disabled={loading}
             >
               {t("cancel")}
             </button>
             <button
               type="submit"
-              className="btn-premium-primary flex-1"
+              className="btn-premium-primary flex-1 cursor-pointer"
               disabled={loading || !nameGu || !nameEn}
             >
               {loading ? (
@@ -202,4 +222,6 @@ export default function AddCategoryModal({ open, onClose, onAdded }: AddCategory
       </div>
     </div>
   );
+
+  return createPortal(content, targetContainer);
 }

@@ -13,7 +13,7 @@ export async function GET(
 
   const { id } = await params;
   await connectDB();
-  const item = await StockItem.findById(id).lean();
+  const item = await StockItem.findById(id).populate("category_id", "name emoji").lean();
   return NextResponse.json(item);
 }
 
@@ -28,7 +28,14 @@ export async function PUT(
   await connectDB();
   const body = await req.json();
 
-  const updated = await StockItem.findByIdAndUpdate(id, body, { new: true });
+  if (body.price_per_unit !== undefined) {
+    body.price_per_unit = parseFloat(String(body.price_per_unit));
+  }
+  if (body.quantity !== undefined) {
+    body.quantity = parseFloat(String(body.quantity));
+  }
+
+  const updated = await StockItem.findByIdAndUpdate(id, body, { new: true }).populate("category_id", "name emoji");
   return NextResponse.json(updated);
 }
 

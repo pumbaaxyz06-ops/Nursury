@@ -52,8 +52,13 @@ export async function POST(req: NextRequest) {
   const body = await req.json();
   const userId = (session.user as any).id;
 
+  const price_per_unit = body.price_per_unit !== undefined ? parseFloat(String(body.price_per_unit)) : 0;
+  const quantity = body.quantity !== undefined ? parseFloat(String(body.quantity)) : 0;
+
   const item = await StockItem.create({
     ...body,
+    price_per_unit,
+    quantity,
     image: body.image || "https://picsum.photos/id/106/300/200",
     condition_image: body.condition_image || "",
     registered_by: userId,

@@ -56,7 +56,7 @@ export default function RootLayout({
         <SessionProvider>
           <LanguageProvider>
             {/* Premium Centered Standalone App Container */}
-            <div className="w-full max-w-[480px] mx-auto min-h-screen bg-white shadow-premium-lg border-x border-neutral-200/50 relative flex flex-col pb-16">
+            <div id="app-frame" className="w-full max-w-[480px] mx-auto min-h-screen bg-white shadow-premium-lg border-x border-neutral-200/50 relative flex flex-col">
               {children}
             </div>
           </LanguageProvider>

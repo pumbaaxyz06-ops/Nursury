@@ -8,8 +8,8 @@ export default function DashboardLayout({
 }) {
   return (
     <div className="flex-grow flex flex-col min-h-screen relative">
-      <div className="flex-grow flex flex-col pb-4">{children}</div>
-      <AppFooter className="mb-16" />
+      <div className="flex-grow flex flex-col">{children}</div>
+      <AppFooter className="pb-20 pt-6 mt-auto" />
       <BottomNav />
     </div>
   );

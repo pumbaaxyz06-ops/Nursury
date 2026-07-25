@@ -2,9 +2,13 @@
 
 import { useEffect, useMemo, useState } from "react";
 import { useLang } from "@/lib/LanguageContext";
-import { Plus } from "lucide-react";
+import { Plus, Download, FileText, Calendar, Filter } from "lucide-react";
 import LangToggle from "@/components/ui/LangToggle";
+import UserHeaderMenu from "@/components/ui/UserHeaderMenu";
 import { useRouter } from "next/navigation";
+import { toast } from "sonner";
+import jsPDF from "jspdf";
+import autoTable from "jspdf-autotable";
 
 interface Sale {
   _id: string;
@@ -37,10 +41,15 @@ export default function SalesPage() {
 
   async function loadSales() {
     setLoading(true);
-    const res = await fetch("/api/sales");
-    const data = await res.json();
-    setSales(Array.isArray(data) ? data : []);
-    setLoading(false);
+    try {
+      const res = await fetch("/api/sales");
+      const data = await res.json();
+      setSales(Array.isArray(data) ? data : []);
+    } catch (e) {
+      console.error(e);
+    } finally {
+      setLoading(false);
+    }
   }
 
   useEffect(() => {
@@ -71,11 +80,93 @@ export default function SalesPage() {
   const periodTotal = filteredSales.reduce((a, b) => a + b.final_amount, 0);
   const months = lang === "gu" ? MONTHS_GU : MONTHS_EN;
 
+  const exportSalesPDF = () => {
+    if (filteredSales.length === 0) {
+      toast.error("No sales records available to export for the selected filter.");
+      return;
+    }
+
+    try {
+      const doc = new jsPDF();
+
+      // Top Banner
+      doc.setFillColor(48, 109, 41);
+      doc.rect(0, 0, 210, 36, "F");
+
+      doc.setTextColor(255, 255, 255);
+      doc.setFontSize(20);
+      doc.setFont("helvetica", "bold");
+      doc.text("SALES TRANSACTIONS REPORT", 14, 20);
+
+      const monthLabel = filterMonth ? MONTHS_EN[Number(filterMonth) - 1] : "All Months";
+      const filterSummaryText = `Period: ${monthLabel} ${filterYear || "All Years"}`;
+      doc.setFontSize(10);
+      doc.setFont("helvetica", "normal");
+      doc.text(filterSummaryText, 14, 28);
+      doc.text(`Generated: ${new Date().toLocaleDateString("en-IN")}`, 150, 28);
+
+      // Metric Summary Cards in PDF
+      doc.setFillColor(245, 248, 245);
+      doc.roundedRect(14, 44, 88, 24, 3, 3, "F");
+      doc.setTextColor(71, 85, 105);
+      doc.setFontSize(9);
+      doc.text("TOTAL TRANSACTIONS", 20, 52);
+      doc.setFontSize(14);
+      doc.setFont("helvetica", "bold");
+      doc.setTextColor(30, 41, 59);
+      doc.text(String(filteredSales.length), 20, 62);
+
+      doc.setFillColor(245, 248, 245);
+      doc.roundedRect(108, 44, 88, 24, 3, 3, "F");
+      doc.setTextColor(71, 85, 105);
+      doc.setFontSize(9);
+      doc.setFont("helvetica", "normal");
+      doc.text("TOTAL REVENUE", 114, 52);
+      doc.setFontSize(14);
+      doc.setFont("helvetica", "bold");
+      doc.setTextColor(48, 109, 41);
+      doc.text(`Rs. ${periodTotal.toLocaleString("en-IN")}`, 114, 62);
+
+      // Table of Sales
+      autoTable(doc, {
+        startY: 76,
+        head: [["#", "Bill No", "Date", "Customer Name", "Payment Method", "Items Count", "Amount (Rs)"]],
+        body: filteredSales.map((s, idx) => [
+          idx + 1,
+          s.bill_number,
+          new Date(s.created_at).toLocaleDateString("en-IN"),
+          s.customer_name || "Walk-in Customer",
+          (s.payment_method || "cash").toUpperCase() + (s.with_gst ? " (GST)" : ""),
+          s.items?.length || 0,
+          `Rs. ${s.final_amount.toLocaleString("en-IN")}`,
+        ]),
+        headStyles: { fillColor: [48, 109, 41], textColor: 255, fontStyle: "bold" },
+        alternateRowStyles: { fillColor: [248, 250, 248] },
+        theme: "striped",
+      });
+
+      const finalY = (doc as any).lastAutoTable.finalY + 10;
+      doc.setFontSize(9);
+      doc.setTextColor(100, 116, 139);
+      doc.setFont("helvetica", "normal");
+      doc.text("End of Sales Statement • Vriksh Nursery Management", 14, finalY);
+
+      doc.save(`Sales_Report_${filterYear || "All"}_${filterMonth || "All"}.pdf`);
+      toast.success("Sales Report PDF exported successfully!");
+    } catch (e) {
+      console.error(e);
+      toast.error("Failed to generate PDF report");
+    }
+  };
+
   return (
-    <div className="flex-grow pb-24">
+    <div className="flex-grow pb-6">
       <div className="sticky top-0 z-30 flex items-center justify-between px-5 py-4 bg-[#306D29] border-b border-[#255420] shadow-premium-sm">
         <h1 className="text-lg font-bold text-white">{t("sales")}</h1>
-        <LangToggle className="bg-white/10 border border-white/20 text-white" />
+        <div className="flex items-center gap-2 flex-shrink-0">
+          <LangToggle className="bg-white/10 border border-white/20 text-white" />
+          <UserHeaderMenu />
+        </div>
       </div>
 
       <div className="px-5 py-6 max-w-7xl mx-auto w-full space-y-6">
@@ -100,42 +191,64 @@ export default function SalesPage() {
           </div>
         </div>
 
-        {/* Month / Year filters */}
-        <div className="grid grid-cols-2 gap-3">
-          <div>
-            <label className="premium-label">{t("filter_month")}</label>
-            <select
-              className="premium-input appearance-none"
-              value={filterMonth}
-              onChange={(e) => setFilterMonth(e.target.value)}
+        {/* Month / Year filters & Export Button */}
+        <div className="bg-white p-4 rounded-2xl border border-neutral-200/80 shadow-premium-sm space-y-3">
+          <div className="flex items-center justify-between">
+            <div className="flex items-center gap-2 text-sm font-bold text-neutral-900">
+              <Filter size={16} className="text-primary" />
+              <span>Filter Transactions</span>
+            </div>
+            <button
+              onClick={exportSalesPDF}
+              className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl bg-emerald-50 text-emerald-800 border border-emerald-200 hover:bg-emerald-100 font-bold text-xs transition-all cursor-pointer shadow-premium-sm"
+              title="Export PDF Report"
             >
-              <option value="">{t("filter_all")}</option>
-              {months.map((m, i) => (
-                <option key={m} value={String(i + 1)}>
-                  {m}
-                </option>
-              ))}
-            </select>
+              <Download size={15} />
+              <span>Export PDF Report</span>
+            </button>
           </div>
-          <div>
-            <label className="premium-label">{t("filter_year")}</label>
-            <select
-              className="premium-input appearance-none"
-              value={filterYear}
-              onChange={(e) => setFilterYear(e.target.value)}
-            >
-              <option value="">{t("filter_all")}</option>
-              {years.map((y) => (
-                <option key={y} value={String(y)}>
-                  {y}
-                </option>
-              ))}
-            </select>
+
+          <div className="grid grid-cols-2 gap-3">
+            <div>
+              <label className="premium-label">{t("filter_month")}</label>
+              <select
+                className="premium-input appearance-none cursor-pointer"
+                value={filterMonth}
+                onChange={(e) => setFilterMonth(e.target.value)}
+              >
+                <option value="">{t("filter_all")}</option>
+                {months.map((m, i) => (
+                  <option key={m} value={String(i + 1)}>
+                    {m}
+                  </option>
+                ))}
+              </select>
+            </div>
+            <div>
+              <label className="premium-label">{t("filter_year")}</label>
+              <select
+                className="premium-input appearance-none cursor-pointer"
+                value={filterYear}
+                onChange={(e) => setFilterYear(e.target.value)}
+              >
+                <option value="">{t("filter_all")}</option>
+                {years.map((y) => (
+                  <option key={y} value={String(y)}>
+                    {y}
+                  </option>
+                ))}
+              </select>
+            </div>
           </div>
         </div>
 
         <div className="space-y-4">
-          <h2 className="text-base font-bold text-neutral-900">{t("recent_transactions")}</h2>
+          <h2 className="text-base font-bold text-neutral-900 flex items-center justify-between">
+            <span>{t("recent_transactions")}</span>
+            <span className="text-xs font-normal text-neutral-500">
+              {filteredSales.length} record{filteredSales.length !== 1 ? "s" : ""}
+            </span>
+          </h2>
 
           {loading ? (
             <div className="space-y-3">

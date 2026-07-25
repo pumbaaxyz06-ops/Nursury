@@ -53,3 +53,16 @@ export async function PUT(
 
   return NextResponse.json(booking);
 }
+
+export async function DELETE(
+  _req: NextRequest,
+  { params }: { params: Promise<{ id: string }> }
+) {
+  const session = await getServerSession(authOptions);
+  if (!session) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+
+  const { id } = await params;
+  await connectDB();
+  await AdvanceBooking.findByIdAndDelete(id);
+  return NextResponse.json({ success: true });
+}

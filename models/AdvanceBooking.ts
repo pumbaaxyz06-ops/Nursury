@@ -26,6 +26,7 @@ export interface IAdvanceBooking extends Document {
   fulfilled_date?: Date;
   driver_name?: string;
   driver_phone?: string;
+  vehicle_number?: string;
   notes: string;
   notification_sent: boolean;
 }
@@ -58,6 +59,7 @@ const AdvanceBookingSchema = new Schema<IAdvanceBooking>({
   fulfilled_date: { type: Date },
   driver_name: { type: String },
   driver_phone: { type: String },
+  vehicle_number: { type: String, default: "" },
   notes: { type: String, default: "" },
   notification_sent: { type: Boolean, default: false },
 }, { timestamps: true });
